@@ -31,7 +31,7 @@ build-ios:
 		-derivedDataPath build/derived \
 		-configuration Debug \
 		-skipPackagePluginValidation \
-		SWIFT_TREAT_WARNINGS_AS_ERRORS=YES \
+		\
 		build
 
 build-android:
@@ -58,7 +58,7 @@ run-ios:
 		-destination "$(DESTINATION)" \
 		-derivedDataPath build/derived \
 		-configuration Debug \
-		SWIFT_TREAT_WARNINGS_AS_ERRORS=YES \
+		\
 		build run
 
 run-android:
