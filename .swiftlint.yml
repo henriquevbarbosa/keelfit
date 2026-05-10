@@ -1,0 +1,48 @@
+disabled_rules:
+  - trailing_whitespace
+  - todo
+  - vertical_whitespace_opening_braces
+
+opt_in_rules:
+  - empty_count
+  - explicit_init
+  - force_unwrapping
+  - redundant_nil_coalescing
+  - switch_case_on_newline
+
+analyzer_rules:
+  - unused_import
+
+included:
+  - Sources
+
+excluded:
+  - .build
+  - DerivedData
+  - build
+  - Android
+  - Darwin
+  - Package.swift
+
+line_length:
+  warning: 120
+  error: 150
+  ignores_urls: true
+  ignores_function_declarations: false
+
+function_body_length:
+  warning: 60
+  error: 100
+
+type_body_length:
+  warning: 300
+  error: 500
+
+cyclomatic_complexity:
+  warning: 10
+  error: 20
+
+reporter: xcode
+
+# Warnings as errors in CI/build
+# Set via Makefile / xcodebuild: SWIFT_TREAT_WARNINGS_AS_ERRORS=YES
