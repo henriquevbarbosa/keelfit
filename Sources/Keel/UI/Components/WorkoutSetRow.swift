@@ -5,58 +5,48 @@ struct WorkoutSetRow: View {
     @Binding var repsText: String
     @Binding var weightText: String
     let onDelete: () -> Void
-    
+
     var body: some View {
-        HStack(spacing: Spacing.sm) {
+        HStack(spacing: 8) {
             Text("\(setNumber)")
                 .font(.caption)
-                .foregroundColor(.textTertiary)
+                .foregroundColor(.gray)
                 .frame(width: 24, alignment: .center)
-            
+
             TextField("0", text: $repsText)
-                .font(.bodyMedium)
+                .font(.body.weight(.medium))
                 .keyboardType(.numberPad)
                 .multilineTextAlignment(.center)
                 .frame(width: 50)
-                .padding(Spacing.xs)
-                .background(Color.surface)
-                .cornerRadius(Radius.sm)
-            
-            Text("×")
+                .padding(4)
+                .background(Color(red: 0.078, green: 0.078, blue: 0.078))
+                .cornerRadius(4)
+
+            Text("x")
                 .font(.caption)
-                .foregroundColor(.textSecondary)
-            
+                .foregroundColor(.gray)
+
             TextField("0.0", text: $weightText)
-                .font(.bodyMedium)
+                .font(.body.weight(.medium))
                 .keyboardType(.decimalPad)
                 .multilineTextAlignment(.center)
                 .frame(width: 60)
-                .padding(Spacing.xs)
-                .background(Color.surface)
-                .cornerRadius(Radius.sm)
-            
+                .padding(4)
+                .background(Color(red: 0.078, green: 0.078, blue: 0.078))
+                .cornerRadius(4)
+
             Text("kg")
                 .font(.caption)
-                .foregroundColor(.textTertiary)
-            
+                .foregroundColor(.gray)
+
             Spacer()
-            
+
             Button(action: onDelete) {
                 Image(systemName: "minus.circle.fill")
-                    .foregroundColor(.error)
-                    .font(.title3)
+                    .foregroundColor(Color(red: 1.0, green: 0.322, blue: 0.322))
             }
             .buttonStyle(.plain)
         }
         .frame(minHeight: 44)
     }
-}
-
-#Preview {
-    @Previewable @State var repsText = "10"
-    @Previewable @State var weightText = "60.0"
-    
-    WorkoutSetRow(setNumber: 1, repsText: $repsText, weightText: $weightText, onDelete: {})
-        .padding()
-        .background(Color.appBackground)
 }

@@ -1,0 +1,8 @@
+version: 1.0
+# Skip configuration
+build:
+  android:
+    minSdk: 28
+    targetSdk: 34
+  ios:
+    deploymentTarget: "17.0"

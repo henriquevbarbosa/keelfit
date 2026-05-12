@@ -13,7 +13,7 @@ public struct KeelRootView: View {
     }
 
     public var body: some View {
-        ContentView()
+        OnboardingContainer()
             .task {
                 logger.info("iOS logs: Xcode console; Android logs: adb logcat or Android Studio")
             }

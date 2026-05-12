@@ -1,23 +1,19 @@
 import Foundation
-import SwiftData
 
-@Model
-class SetEntry {
-    var reps: Int
-    var weight: Double
-    var unit: String // "kg" or "lb"
-    var timestamp: Date
-    var isCompleted: Bool
-    
-    init(reps: Int = 0, weight: Double = 0.0, unit: String = "kg", isCompleted: Bool = true) {
+public class SetEntry: Codable, Identifiable {
+    public var id: String
+    public var reps: Int
+    public var weight: Double
+    public var timestamp: Date
+
+    public init(reps: Int = 0, weight: Double = 0.0) {
+        self.id = UUID().uuidString
         self.reps = reps
         self.weight = weight
-        self.unit = unit
         self.timestamp = Date()
-        self.isCompleted = isCompleted
     }
-    
-    var volume: Double {
+
+    public var volume: Double {
         Double(reps) * weight
     }
 }

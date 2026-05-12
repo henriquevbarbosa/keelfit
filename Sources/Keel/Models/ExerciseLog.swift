@@ -1,31 +1,25 @@
 import Foundation
-import SwiftData
 
-@Model
-class ExerciseLog {
-    var exerciseID: String
-    var exerciseName: String
-    var muscleGroup: String
-    var sets: [SetEntry]
-    var timestamp: Date
-    
-    init(exerciseID: String, exerciseName: String, muscleGroup: String, sets: [SetEntry] = []) {
+public class ExerciseLog: Codable, Identifiable {
+    public var id: String
+    public var exerciseID: String
+    public var exerciseName: String
+    public var muscleGroup: String
+    public var sets: [SetEntry]
+
+    public init(exerciseID: String, exerciseName: String, muscleGroup: String, sets: [SetEntry] = []) {
+        self.id = UUID().uuidString
         self.exerciseID = exerciseID
         self.exerciseName = exerciseName
         self.muscleGroup = muscleGroup
         self.sets = sets
-        self.timestamp = Date()
     }
-    
-    var totalVolume: Double {
-        sets.reduce(0) { $0 + $1.volume }
+
+    public var totalVolume: Double {
+        sets.reduce(0.0) { $0 + $1.volume }
     }
-    
-    var totalSets: Int {
+
+    public var totalSets: Int {
         sets.count
-    }
-    
-    var bestSet: SetEntry? {
-        sets.max { $0.volume < $1.volume }
     }
 }

@@ -9,59 +9,60 @@ struct PaywallCard: View {
     let action: () -> Void
     
     var body: some View {
-        VStack(alignment: .leading, spacing: Spacing.lg) {
+        VStack(alignment: .leading, spacing: 16) {
             if isPopular {
                 Text("MAIS POPULAR")
-                    .font(.caption)
-                    .foregroundColor(.appBackground)
-                    .padding(.horizontal, Spacing.sm)
-                    .padding(.vertical, Spacing.xs)
-                    .background(Color.accent)
-                    .cornerRadius(Radius.sm)
+                    .font(.system(size: 12, weight: .regular))
+                    .foregroundColor(Color(red: 0.039, green: 0.039, blue: 0.039))
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Color(red: 0.784, green: 1.0, blue: 0.0))
+                    .cornerRadius(4)
             }
             
-            VStack(alignment: .leading, spacing: Spacing.xs) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text(title)
-                    .font(.title3)
-                    .foregroundColor(.textPrimary)
-                HStack(alignment: .lastTextBaseline, spacing: Spacing.xs) {
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundColor(.white)
+                HStack(alignment: .lastTextBaseline, spacing: 4) {
                     Text(price)
-                        .font(.display)
-                        .foregroundColor(.accent)
+                        .font(.system(size: 34, weight: .bold))
+                        .foregroundColor(Color(red: 0.784, green: 1.0, blue: 0.0))
                     Text(period)
-                        .font(.caption)
-                        .foregroundColor(.textSecondary)
+                        .font(.system(size: 12, weight: .regular))
+                        .foregroundColor(Color(red: 0.627, green: 0.627, blue: 0.627))
                 }
             }
             
-            VStack(alignment: .leading, spacing: Spacing.sm) {
+            VStack(alignment: .leading, spacing: 8) {
                 ForEach(features, id: \.self) { feature in
-                    HStack(spacing: Spacing.sm) {
+                    HStack(spacing: 8) {
                         Image(systemName: "checkmark.circle.fill")
-                            .foregroundColor(.success)
-                            .font(.callout)
+                            .foregroundColor(Color(red: 0.0, green: 0.902, blue: 0.463))
+                            .font(.system(size: 14, weight: .semibold))
                         Text(feature)
-                            .font(.bodyRegular)
-                            .foregroundColor(.textSecondary)
+                            .font(.system(size: 16, weight: .regular))
+                            .foregroundColor(Color(red: 0.627, green: 0.627, blue: 0.627))
                     }
                 }
             }
             
             PrimaryButton(title: "Assinar", action: action)
         }
-        .padding(Spacing.lg)
-        .background(Color.surfaceElevated)
+        .padding(16)
+        .background(Color(red: 0.102, green: 0.102, blue: 0.102))
         .overlay(
             Rectangle()
-                .fill(Color.accent)
+                .fill(Color(red: 0.784, green: 1.0, blue: 0.0))
                 .frame(height: 2)
-                .cornerRadius(Radius.xl),
+                .cornerRadius(16),
             alignment: .top
         )
-        .cornerRadius(Radius.xl)
+        .cornerRadius(16)
     }
 }
 
+#if !SKIP
 #Preview {
     PaywallCard(
         title: "Keel Pro",
@@ -76,5 +77,6 @@ struct PaywallCard: View {
         action: {}
     )
     .padding()
-    .background(Color.appBackground)
+    .background(Color(red: 0.039, green: 0.039, blue: 0.039))
 }
+#endif

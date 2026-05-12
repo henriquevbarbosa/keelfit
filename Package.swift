@@ -1,25 +1,42 @@
-// swift-tools-version: 6.1
-// This is a Skip (https://skip.dev) package.
+// swift-tools-version: 5.9
+
 import PackageDescription
 
 let package = Package(
-    name: "keel-init",
-    defaultLocalization: "en",
-    platforms: [.iOS(.v17), .macOS(.v14)],
+    name: "Keel",
+    platforms: [
+        .iOS(.v17),
+        .macOS(.v14)
+    ],
     products: [
-        .library(name: "Keel", type: .dynamic, targets: ["Keel"]),
+        .library(name: "Keel", type: .dynamic, targets: ["Keel"])
     ],
     dependencies: [
-        .package(url: "https://source.skip.tools/skip.git", from: "1.8.14"),
-        .package(url: "https://source.skip.tools/skip-ui.git", from: "1.0.0")
+        .package(url: "https://source.skip.tools/skip.git", from: "1.0.0"),
+        .package(url: "https://source.skip.tools/skip-ui.git", from: "1.0.0"),
+        .package(url: "https://source.skip.tools/skip-model.git", from: "1.0.0"),
+        .package(url: "https://github.com/RevenueCat/purchases-ios.git", from: "5.0.0"),
     ],
     targets: [
-        .target(name: "Keel", dependencies: [
-            .product(name: "SkipUI", package: "skip-ui")
-        ], resources: [.process("Resources")], plugins: [.plugin(name: "skipstone", package: "skip")]),
-        .testTarget(name: "KeelTests", dependencies: [
-            "Keel",
-            .product(name: "SkipTest", package: "skip")
-        ], resources: [.process("Resources")], plugins: [.plugin(name: "skipstone", package: "skip")]),
+        .target(
+            name: "Keel",
+            dependencies: [
+                .product(name: "SkipUI", package: "skip-ui"),
+                .product(name: "SkipModel", package: "skip-model"),
+                .product(name: "RevenueCat", package: "purchases-ios"),
+            ],
+            resources: [
+                .process("Resources")
+            ],
+            plugins: [.plugin(name: "skipstone", package: "skip")]
+        ),
+        .testTarget(
+            name: "KeelTests",
+            dependencies: ["Keel"]
+        ),
+        .testTarget(
+            name: "KeelUITests",
+            dependencies: ["Keel"]
+        ),
     ]
 )

@@ -11,26 +11,26 @@ struct MacroProgressBar: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: Spacing.xs) {
+        VStack(alignment: .leading, spacing: 4) {
             HStack {
                 Text(label)
-                    .font(.caption)
-                    .foregroundColor(.textSecondary)
+                    .font(.system(size: 12, weight: .regular))
+                    .foregroundColor(Color(red: 0.627, green: 0.627, blue: 0.627))
                 Spacer()
                 Text("\(Int(current))g / \(Int(target))g")
-                    .font(.caption)
-                    .foregroundColor(.textTertiary)
+                    .font(.system(size: 12, weight: .regular))
+                    .foregroundColor(Color(red: 0.420, green: 0.420, blue: 0.420))
             }
             GeometryReader { geo in
                 ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: Radius.full)
-                        .fill(Color.surface)
+                    RoundedRectangle(cornerRadius: 9999)
+                        .fill(Color(red: 0.078, green: 0.078, blue: 0.078))
                         .frame(height: 8)
                         .overlay(
-                            RoundedRectangle(cornerRadius: Radius.full)
-                                .stroke(Color.divider, lineWidth: 0.5)
+                            RoundedRectangle(cornerRadius: 9999)
+                                .stroke(Color(red: 0.165, green: 0.165, blue: 0.165), lineWidth: 0.5)
                         )
-                    RoundedRectangle(cornerRadius: Radius.full)
+                    RoundedRectangle(cornerRadius: 9999)
                         .fill(color)
                         .frame(width: geo.size.width * progress, height: 8)
                 }
@@ -40,12 +40,14 @@ struct MacroProgressBar: View {
     }
 }
 
+#if !SKIP
 #Preview {
-    VStack(spacing: Spacing.lg) {
-        MacroProgressBar(label: "Proteína", current: 120, target: 180, color: .proteinColor)
-        MacroProgressBar(label: "Carboidratos", current: 200, target: 250, color: .carbsColor)
-        MacroProgressBar(label: "Gordura", current: 45, target: 70, color: .fatColor)
+    VStack(spacing: 16) {
+        MacroProgressBar(label: "Proteína", current: 120, target: 180, color: Color(red: 1.0, green: 0.420, blue: 0.420))
+        MacroProgressBar(label: "Carboidratos", current: 200, target: 250, color: Color(red: 0.306, green: 0.800, blue: 0.769))
+        MacroProgressBar(label: "Gordura", current: 45, target: 70, color: Color(red: 1.0, green: 0.898, blue: 0.427))
     }
     .padding()
-    .background(Color.appBackground)
+    .background(Color(red: 0.039, green: 0.039, blue: 0.039))
 }
+#endif

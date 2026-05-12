@@ -1,46 +1,31 @@
 import SwiftUI
 
-enum WorkoutIntensity: String {
-    case light = "Leve"
-    case moderate = "Moderado"
-    case heavy = "Pesado"
-    
+extension WorkoutIntensity {
     var color: Color {
         switch self {
-        case .light: return .info
-        case .moderate: return .warning
-        case .heavy: return .error
+        case .light: return Color(red: 0.267, green: 0.541, blue: 1.0)
+        case .moderate: return Color(red: 1.0, green: 0.702, blue: 0.0)
+        case .heavy: return Color(red: 1.0, green: 0.322, blue: 0.322)
         }
     }
-    
     var textColor: Color {
         switch self {
-        case .light: return .textPrimary
-        case .moderate, .heavy: return .appBackground
+        case .light: return .white
+        case .moderate, .heavy: return Color(red: 0.039, green: 0.039, blue: 0.039)
         }
     }
 }
 
 struct WorkoutIntensityBadge: View {
     let intensity: WorkoutIntensity
-    
+
     var body: some View {
         Text(intensity.rawValue)
-            .font(.caption)
+            .font(.caption.weight(.regular))
             .foregroundColor(intensity.textColor)
-            .padding(.horizontal, Spacing.sm)
-            .padding(.vertical, Spacing.xs)
+            .padding(.horizontal, 8)
+            .padding(.vertical, 4)
             .background(intensity.color)
-            .cornerRadius(Radius.sm)
+            .cornerRadius(4)
     }
-}
-
-#Preview {
-    HStack(spacing: Spacing.md) {
-        WorkoutIntensityBadge(intensity: .light)
-        WorkoutIntensityBadge(intensity: .moderate)
-        WorkoutIntensityBadge(intensity: .heavy)
-    }
-    .padding()
-    .background(Color.appBackground)
 }
